@@ -62,25 +62,29 @@
 <body>
     <div class="card card-custom">
         <h2 class="title-custom mb-3">Number Guessing Game</h2>
-        <p class="text-muted mb-3">You start with 100 points.</p>
+        <p class="text-muted mb-3">You start with 15 lifes to play this game</p>
         <div class="input-group mb-3">
-            <input type="number" id="guessInput" class="form-control" placeholder="Enter your guess (0-100)" min="0" max="100" />
+            <input type="number" id="guessInput" class="form-control" placeholder="Enter your guess (0-100)" min="0"
+                max="100" />
             <button id="guessButton" class="btn btn-success">Submit</button>
         </div>
         <div id="message" class="fw-semibold"></div>
-        <div id="score" class="fw-bold mt-2">Score: 100</div>
+        <div id="score" class="fw-bold mt-2"></div>
+        <div id="lifes" class="fw-bold mt-2">Lifes: 15</div>
         <button id="restartButton" class="btn btn-primary btn-restart">Restart Game</button>
     </div>
 
     <script>
         let originalnumber = Math.floor(Math.random() * 101);
         let score = 100;
+        let lifes = 10;
 
         const guessInput = document.getElementById("guessInput");
         const guessButton = document.getElementById("guessButton");
         const restartButton = document.getElementById("restartButton");
         const messageDiv = document.getElementById("message");
         const scoreDiv = document.getElementById("score");
+        const lifesDiv = document.getElementById("lifes");
 
         guessButton.addEventListener("click", () => {
             const input = Number(guessInput.value);
@@ -91,27 +95,29 @@
                 return;
             }
 
-            score--;
-            scoreDiv.textContent = "Score: " + score;
+            score -= 10;
+            lifes--;
+            lifesDiv.textContent = "Lifes: " + lifes;
 
-            if (score <= 0) {
+            if (lifes <= 0) {
                 messageDiv.textContent = `😢 Game over! The number was ${originalnumber}.`;
-                messageDiv.style.color = "#dc3545";
+                scoreDiv.textContent = `Score: ${score}`;                messageDiv.style.color = "#dc3545";
                 guessButton.disabled = true;
                 guessInput.disabled = true;
                 return;
             }
 
             if (input === originalnumber) {
-                messageDiv.textContent = `🎉 Correct! The number was ${originalnumber}. Score: ${score}.`;
+                messageDiv.textContent = `🎉 Correct! You Guess The Original number was ${originalnumber}.`;
+                scoreDiv.textContent = `Score: ${score}`;
                 messageDiv.style.color = "#28a745";
                 guessButton.disabled = true;
                 guessInput.disabled = true;
             } else if (input < originalnumber) {
-                messageDiv.textContent = `🔼 Higher than ${input}. Try again.`;
+                messageDiv.textContent = `🔼 The Number is Higher than ${input}. Try again.`;
                 messageDiv.style.color = "#0d6efd";
             } else {
-                messageDiv.textContent = `🔽 Lower than ${input}. Try again.`;
+                messageDiv.textContent = `🔽 The Number is Lower than ${input}. Try again.`;
                 messageDiv.style.color = "#0d6efd";
             }
 
@@ -122,7 +128,8 @@
         restartButton.addEventListener("click", () => {
             originalnumber = Math.floor(Math.random() * 101);
             score = 100;
-            scoreDiv.textContent = "Score: 100";
+            lifes = 15;
+            lifesDiv.textContent = "Lifes: " + lifes;
             messageDiv.textContent = "";
             guessInput.value = "";
             guessInput.disabled = false;

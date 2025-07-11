@@ -70,7 +70,7 @@
         </div>
         <div id="message" class="fw-semibold"></div>
         <div id="score" class="fw-bold mt-2"></div>
-        <div id="lifes" class="fw-bold mt-2">Lifes: 15</div>
+        <div id="lifes" class="fw-bold mt-2">Lifes: 10</div>
         <button id="restartButton" class="btn btn-primary btn-restart">Restart Game</button>
     </div>
 
@@ -128,7 +128,7 @@
         restartButton.addEventListener("click", () => {
             originalnumber = Math.floor(Math.random() * 101);
             score = 100;
-            lifes = 15;
+            lifes = 10;
             lifesDiv.textContent = "Lifes: " + lifes;
             messageDiv.textContent = "";
             guessInput.value = "";

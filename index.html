@@ -62,7 +62,7 @@
 <body>
     <div class="card card-custom">
         <h2 class="title-custom mb-3">Number Guessing Game</h2>
-        <p class="text-muted mb-3">You start with 10 lifes to play this game</p>
+        <p class="text-muted mb-3">You start with 20 lifes to play this game</p>
         <div class="input-group mb-3">
             <input type="number" id="guessInput" class="form-control" placeholder="Enter your guess (0-100)" min="0"
                 max="100" />
@@ -70,14 +70,14 @@
         </div>
         <div id="message" class="fw-semibold"></div>
         <div id="score" class="fw-bold mt-2"></div>
-        <div id="lifes" class="fw-bold mt-2">Lifes: 10</div>
+        <div id="lifes" class="fw-bold mt-2">Lifes: 20</div>
         <button id="restartButton" class="btn btn-primary btn-restart">Restart Game</button>
     </div>
 
     <script>
         let originalnumber = Math.floor(Math.random() * 101);
         let score = 100;
-        let lifes = 10;
+        let lifes = 20;
 
         const guessInput = document.getElementById("guessInput");
         const guessButton = document.getElementById("guessButton");
@@ -95,7 +95,7 @@
                 return;
             }
 
-            score -= 10;
+            score -= 5;
             lifes--;
             lifesDiv.textContent = "Lifes: " + lifes;
 
@@ -128,7 +128,7 @@
         restartButton.addEventListener("click", () => {
             originalnumber = Math.floor(Math.random() * 101);
             score = 100;
-            lifes = 10;
+            lifes = 20;
             lifesDiv.textContent = "Lifes: " + lifes;
             messageDiv.textContent = "";
             guessInput.value = "";
